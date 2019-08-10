@@ -12,14 +12,17 @@ public class MergeService {
         int i = 0;
         int j = 0;
 
-        while (i < listA.size() && j < listB.size())
-            answer.add( listA.get(i) < listB.get(j) ? listA.get(i++) :  listB.get(j++) );
+        while (i < listA.size() && j < listB.size()) {
+            answer.add(listA.get(i) < listB.get(j) ? listA.get(i++) : listB.get(j++));
+        }
 
-        while (i < listA.size())
+        while (i < listA.size()) {
             answer.add(listA.get(i++));
+        }
 
-        while (j < listB.size())
+        while (j < listB.size()) {
             answer.add(listB.get(j++));
+        }
 
         return answer;
     }

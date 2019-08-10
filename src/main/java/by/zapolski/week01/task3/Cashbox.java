@@ -6,24 +6,23 @@ public class Cashbox extends Thread{
 
     private final int TIME_FOR_ONE_GOOD = 1000;
 
+    private SynchronousQueue<Customer> queue;
+    private volatile boolean isActive;
 
-    private SynchronousQueue queue;
-    private boolean isActive;
-
-    public Cashbox(SynchronousQueue queue,String name) {
+    public Cashbox(SynchronousQueue<Customer> queue,String name) {
         this.setName(name);
         this.queue = queue;
-        isActive = true;
+        this.isActive = true;
     }
 
     @Override
     public void run() {
-        String name = Thread.currentThread().getName();
+        String name = getName();
 
         System.out.println("---> "+name+" starts working.");
         while (isActive){
             try {
-                Customer customer = (Customer)queue.take();
+                Customer customer = queue.take();
                 System.out.println(name+" took client with "+ customer.getQuantityGoods()+" goods.");
                 for (int i = 0; i < customer.getQuantityGoods(); i++) {
                     Thread.sleep(TIME_FOR_ONE_GOOD);
@@ -38,6 +37,4 @@ public class Cashbox extends Thread{
     public void disable(){
         isActive=false;
     }
-
-
 }

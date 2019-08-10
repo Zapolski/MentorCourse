@@ -32,10 +32,8 @@ public class ClerkTest {
         queue.add(new Customer(NominalBancnoteType.FIFTY));
     }
 
-
-
     @Test
     public void clerkProcessQueueTest(){
-        Assert.assertTrue(clerk.processQeueu(queue));
+        Assert.assertTrue(clerk.processQueue(queue));
     }
 }

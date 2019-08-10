@@ -16,14 +16,12 @@ public class PhoneNumber {
                 case 0:
                     sb.append('(');
                     break;
-                case 3:{
+                case 3:
                     sb.append(") ");
                     break;
-                }
-                case 6:{
+                case 6:
                     sb.append('-');
                     break;
-                }
             }
             sb.append(numbers.get(i));
         }
@@ -37,7 +35,7 @@ public class PhoneNumber {
         String result = numbers.stream().map(Object::toString)
                 .collect(Collectors.joining(""));
 
-        Pattern p = Pattern.compile("([\\d]{3})([\\d]{3})([\\d]{4})"); // Create the pattern.
+        Pattern p = Pattern.compile("(\\d{3})(\\d{3})(\\d{4})");
         Matcher matcher = p.matcher(result); // Create the matcher.
 
         if (matcher.find()){
@@ -52,5 +50,4 @@ public class PhoneNumber {
             throw new IllegalArgumentException("List size is incorrect (list null or not contains 10 items.");
         }
     }
-
 }

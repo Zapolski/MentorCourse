@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Clerk {
 
-    public static final int TICKET_PRICE = 25;
+    private static final int TICKET_PRICE = 25;
 
     private List<MoneyCell> cashbox;
 
@@ -16,8 +16,7 @@ public class Clerk {
         cashbox.add(new MoneyCell(NominalBancnoteType.HUNDRED,Integer.MAX_VALUE));
     }
 
-
-    public boolean processQeueu(List<Customer> customers){
+    public boolean processQueue(List<Customer> customers){
         for (Customer customer: customers){
             int change = customer.getBanknote().getValue()-TICKET_PRICE;
             if (change>0 && giveChange(change)!=change){
@@ -28,7 +27,7 @@ public class Clerk {
         return true;
     }
 
-    public int addBanknotesInCell(final NominalBancnoteType nominal, final int countBanknotes) {
+    private int addBanknotesInCell(final NominalBancnoteType nominal, final int countBanknotes) {
         for (MoneyCell moneyCell: cashbox){
             if (moneyCell.getNominal() == nominal){
                 return moneyCell.addBancnotes(countBanknotes);
@@ -37,7 +36,7 @@ public class Clerk {
         return 0;
     }
 
-    public int giveChange(final int requestedSum) {
+    private int giveChange(final int requestedSum) {
         if (!canTakeMoneyBySum(requestedSum)) {
             return 0;
         }
@@ -70,10 +69,7 @@ public class Clerk {
     }
 
     private boolean canTakeMoneyBySum(final int requestedSum) {
-        if (requestedSum > getAvailableSum()) {
-            return false;
-        }
-        return true;
+        return !(requestedSum > getAvailableSum());
     }
 
     private int getAvailableSum() {

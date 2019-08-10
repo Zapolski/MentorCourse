@@ -1,5 +1,4 @@
 import by.zapolski.week01.task1.PhoneNumber;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +18,6 @@ public class PhoneNumberTest {
         expectedPhone = "(123) 456-7890";
     }
 
-
     @Test
     public void getPhoneNumberFromListWithoutRegExpTest(){
         String actual = PhoneNumber.getPhoneNumberFromListWithoutRegExp(numbers);
@@ -31,11 +29,4 @@ public class PhoneNumberTest {
         String actual = PhoneNumber.getPhoneNumberFromListWithRegExp(numbers);
         Assert.assertEquals(expectedPhone,actual);
     }
-
-    @After
-    public void after(){
-        numbers = null;
-        expectedPhone = null;
-    }
-
 }

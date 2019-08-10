@@ -8,15 +8,14 @@ import java.util.List;
 
 public class MergeServiceTest {
 
-    MergeService mergeService;
-    List<Integer> listA, listB, listC, listD;
-
-    List<Integer> resultTwoLists, resultManyLists;
+    private List<Integer> listA;
+    private List<Integer> listB;
+    private List<Integer> listC;
+    private List<Integer> listD;
+    private List<Integer> resultTwoLists, resultManyLists;
 
     @Before
     public void before(){
-        mergeService = new MergeService();
-
         listA = Arrays.asList(1,5,6);
         listB = Arrays.asList(2,6,8);
         listC = Arrays.asList(-9,0,4);
@@ -24,20 +23,15 @@ public class MergeServiceTest {
 
         resultTwoLists = Arrays.asList(1,2,5,6,6,8);
         resultManyLists = Arrays.asList(-9,-7,0,1,2,4,5,5,6,6,8,11);
-
     }
 
     @Test
     public void mergeTwoLists(){
-        Assert.assertEquals(resultTwoLists,mergeService.mergeTwoLists(listA,listB));
+        Assert.assertEquals(resultTwoLists,MergeService.mergeTwoLists(listA,listB));
     }
 
     @Test
     public void mergeManyLists(){
-        Assert.assertEquals(resultManyLists,mergeService.mergeManyLists(listA,listB,listC,listD));
+        Assert.assertEquals(resultManyLists,MergeService.mergeManyLists(listA,listB,listC,listD));
     }
-
-
-
-
 }

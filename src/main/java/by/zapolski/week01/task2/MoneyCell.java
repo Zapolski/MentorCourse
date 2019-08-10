@@ -43,12 +43,8 @@ public class MoneyCell {
     }
 
     public int takeBancnotes(final int countBancnotesToTake) {
-        int currentToTake = 0;
-        if (countBancnotesToTake > amountOfBanknotes) {
-            currentToTake = amountOfBanknotes;
-        } else {
-            currentToTake = countBancnotesToTake;
-        }
+        int currentToTake;
+        currentToTake = countBancnotesToTake > amountOfBanknotes ? amountOfBanknotes : countBancnotesToTake;
         amountOfBanknotes = amountOfBanknotes - currentToTake;
         return currentToTake;
     }

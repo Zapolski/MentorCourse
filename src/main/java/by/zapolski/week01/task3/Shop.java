@@ -6,20 +6,14 @@ import java.util.concurrent.SynchronousQueue;
 
 public class Shop {
 
-    //final static SynchronousQueue queue1 = new SynchronousQueue();
-    //final static List<Customer> customerList1 = new ArrayList<>();
-
     private Integer countCashboxes;
     private List<Customer> customerList;
-    private List<Cashbox> threadList;
-    private SynchronousQueue queue;
+    private List<Cashbox> threadList = new ArrayList<>();
+    private SynchronousQueue<Customer> queue = new SynchronousQueue<>();
 
     public Shop(List<Customer> customerList, Integer countCashboxes) {
         this.customerList = customerList;
         this.countCashboxes = countCashboxes;
-
-        this.queue = new SynchronousQueue();
-        this.threadList = new ArrayList<>();
     }
 
     public long getTimeForProcessQueue() throws InterruptedException {
@@ -36,14 +30,13 @@ public class Shop {
                 queue.put(customer);
         }
 
-        for (Cashbox cashbox: threadList){
-            cashbox.disable();
-        }
+        threadList.forEach(cb -> cb.disable());
+
         for (Cashbox cashbox: threadList){
             cashbox.join();
         }
 
-        return Math.round( (System.currentTimeMillis()-startTime)/1000 );
+        return Math.round( (System.currentTimeMillis()-startTime)/1000f );
     }
 
 }

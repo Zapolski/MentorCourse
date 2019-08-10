@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ShopTest {
 
-    Shop shop;
-    List<Customer> customerList;
+    private Shop shop;
+    private List<Customer> customerList;
 
     @Before
     public void before(){
@@ -24,7 +24,7 @@ public class ShopTest {
     }
 
     @Test
-    public void ShopTest() throws InterruptedException {
+    public void getTimeForPrecessQueueTest() throws InterruptedException {
         Assert.assertEquals(8,shop.getTimeForProcessQueue());
     }
 }
