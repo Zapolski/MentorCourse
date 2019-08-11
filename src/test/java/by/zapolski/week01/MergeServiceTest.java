@@ -1,3 +1,5 @@
+package by.zapolski.week01;
+
 import by.zapolski.week01.task4.MergeService;
 import org.junit.Assert;
 import org.junit.Before;
