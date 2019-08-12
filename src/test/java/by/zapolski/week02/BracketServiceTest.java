@@ -11,38 +11,50 @@ public class BracketServiceTest {
     BracketService bracketService = new BracketService();
 
     @Test
-    public void checkStringWithBrackets01(){
+    public void checkStringWithBrackets01_correct(){
         String source = "()";
         assertTrue(bracketService.checkStringWithBrackets(source));
     }
 
     @Test
-    public void checkStringWithBrackets02(){
+    public void checkStringWithBrackets02_correct(){
         String source = "(){}[]";
         assertTrue(bracketService.checkStringWithBrackets(source));
     }
 
     @Test
-    public void checkStringWithBrackets03(){
+    public void checkStringWithBrackets03_correct(){
         String source = "{[]}";
         assertTrue(bracketService.checkStringWithBrackets(source));
     }
 
     @Test
-    public void checkStringWithBrackets04(){
+    public void checkStringWithBrackets04_incorrect(){
         String source = "([)]";
         assertFalse(bracketService.checkStringWithBrackets(source));
     }
 
     @Test
-    public void checkStringWithBrackets05(){
+    public void checkStringWithBrackets05_incorrect(){
         String source = "(]";
         assertFalse(bracketService.checkStringWithBrackets(source));
     }
 
     @Test
-    public void checkStringWithBrackets06(){
+    public void checkStringWithBrackets06_incorrect(){
         String source = "(({{[[()";
+        assertFalse(bracketService.checkStringWithBrackets(source));
+    }
+
+    @Test
+    public void checkStringWithEmptyString_correct(){
+        String source = "";
+        assertTrue(bracketService.checkStringWithBrackets(source));
+    }
+
+    @Test
+    public void checkStringStartWithClosingBracket_incorrect(){
+        String source = ")(){}[()]";
         assertFalse(bracketService.checkStringWithBrackets(source));
     }
 }

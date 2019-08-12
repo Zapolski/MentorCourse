@@ -21,16 +21,19 @@ public class BracketService {
 
     public Boolean checkStringWithBrackets(String source){
 
-        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        ArrayDeque<Integer> dequeStack = new ArrayDeque<>();
 
         char[] chars = source.toCharArray();
         for (char ch: chars){
-
-
-
+            if (openBracketMap.containsKey(ch)){
+                dequeStack.push(openBracketMap.get(ch));
+            }else{
+                Integer currentOpenBracketCode = dequeStack.poll();
+                if (currentOpenBracketCode == null || !currentOpenBracketCode.equals(closeBracketMap.get(ch))){
+                    return false;
+                }
+            }
         }
-
-
-        return deque.isEmpty();
+        return dequeStack.isEmpty();
     }
 }
