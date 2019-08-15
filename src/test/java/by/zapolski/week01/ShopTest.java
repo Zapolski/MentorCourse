@@ -1,3 +1,5 @@
+package by.zapolski.week01;
+
 import by.zapolski.week01.task3.Customer;
 import by.zapolski.week01.task3.Shop;
 import org.junit.Assert;
