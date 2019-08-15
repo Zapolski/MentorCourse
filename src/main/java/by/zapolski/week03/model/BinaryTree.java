@@ -1,22 +1,41 @@
 package by.zapolski.week03.model;
 
+import by.zapolski.week03.task1.CountNodeService;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class BinaryTree<T extends Comparable> {
 
-    private static class Node<T> {
+    public static class Node<T> {
         private T value;
         private Node leftChild;
         private Node rightChild;
 
+        public Node getLeftChild() {
+            return leftChild;
+        }
+        public Node getRightChild() {
+            return rightChild;
+        }
         public Node(T value) {
             this.value = value;
         }
     }
 
     private Node<T> root;
+
+    public Node<T> getRoot() {
+        return root;
+    }
+
+    public BinaryTree(Node<T> root) {
+        this.root = root;
+    }
+
+    public BinaryTree() {
+    }
 
     public void insert(T value){
         Node node = new Node(value);
@@ -43,7 +62,6 @@ public class BinaryTree<T extends Comparable> {
                         current = current.rightChild;
                     }
                 }
-
             }
         }
     }
@@ -56,29 +74,22 @@ public class BinaryTree<T extends Comparable> {
 
     private List<String> output(Node<T> element) {
         ArrayList<String> result = new ArrayList<>();
-
-        if (element.rightChild != null) {
-            List<String> temp = output(element.rightChild);
-            for (int i = 0; i < temp.size(); i++) {
-                result.add("    "+ temp.get(i));
-            }
-        }
+        addChildForPrint(result, element.rightChild);
         result.add(element.value.toString());
-        if (element.leftChild != null) {
-            List<String> temp = output(element.leftChild);
-            for (int i = 0; i < temp.size(); i++) {
-                result.add("    "+ temp.get(i));
-            }
-        }
-
+        addChildForPrint(result, element.leftChild);
         return result;
+    }
+
+    private void addChildForPrint(ArrayList<String> result, Node rightChild) {
+        if (rightChild != null) {
+            List<String> temp = output(rightChild);
+            temp.forEach(i -> result.add("    " + i));
+        }
     }
 
 
     public static void main(String[] args) {
         BinaryTree<Integer> binaryTree = new BinaryTree<>();
-
-        binaryTree.output().forEach(System.out::println);
 
         binaryTree.insert(8);
         binaryTree.insert(3);
@@ -89,7 +100,11 @@ public class BinaryTree<T extends Comparable> {
         binaryTree.insert(4);
         binaryTree.insert(7);
         binaryTree.insert(13);
+        binaryTree.insert(17);
+        binaryTree.insert(18);
 
         binaryTree.output().forEach(System.out::println);
+        System.out.println("Count items: "+new CountNodeService().getCountNodeLoopImpl(binaryTree));
+        System.out.println("Count items: "+new CountNodeService().getCountNodeRecImpl(binaryTree));
     }
 }
