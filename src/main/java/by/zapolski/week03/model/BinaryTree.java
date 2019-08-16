@@ -1,6 +1,9 @@
 package by.zapolski.week03.model;
 
 import by.zapolski.week03.task1.CountNodeService;
+import by.zapolski.week03.task2.HighBinaryTreeService;
+import by.zapolski.week03.task3.ConcatNodesDfsService;
+import by.zapolski.week03.task4.ConcatNodesBfsService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +25,12 @@ public class BinaryTree<T extends Comparable> {
         public Node(T value) {
             this.value = value;
         }
+        public T getValue() {
+            return value;
+        }
     }
+
+
 
     private Node<T> root;
 
@@ -101,10 +109,19 @@ public class BinaryTree<T extends Comparable> {
         binaryTree.insert(7);
         binaryTree.insert(13);
         binaryTree.insert(17);
-        binaryTree.insert(18);
+        //binaryTree.insert(18);
+        //binaryTree.insert(100);
 
         binaryTree.output().forEach(System.out::println);
-        System.out.println("Count items: "+new CountNodeService().getCountNodeLoopImpl(binaryTree));
-        System.out.println("Count items: "+new CountNodeService().getCountNodeRecImpl(binaryTree));
+        System.out.println("Count items (loop): "+new CountNodeService().getCountNodeLoopImpl(binaryTree));
+        System.out.println("Count items (rec): "+new CountNodeService().getCountNodeRecImpl(binaryTree));
+
+        System.out.println("High tree: "+new HighBinaryTreeService().heightOfBinaryTree(binaryTree));
+
+        System.out.println("Concat (pre-oder): "+new ConcatNodesDfsService().getConcatNodesStringPreOder(binaryTree));
+        System.out.println("Concat (in-oder): "+new ConcatNodesDfsService().getConcatNodesStringInOder(binaryTree));
+        System.out.println("Concat (post-oder): "+new ConcatNodesDfsService().getConcatNodesStringPostOder(binaryTree));
+
+        System.out.println("Concat (BFS): "+new ConcatNodesBfsService().getConcatNodesString(binaryTree));
     }
 }

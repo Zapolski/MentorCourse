@@ -1,24 +1,24 @@
-package by.zapolski.week03.task1;
+package by.zapolski.week03.task4;
 
 import by.zapolski.week03.model.BinaryTree;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class CountNodeService {
+public class ConcatNodesBfsService {
 
     // Breadth First Search (approach with loop)
-    public int getCountNodeLoopImpl (BinaryTree tree){
+    public String getConcatNodesString (BinaryTree tree){
         BinaryTree.Node root = tree.getRoot();
         if (root==null){
-            return 0;
+            return "";
         }else{
-            int counter = 0;
+            String result = "";
             Queue<BinaryTree.Node> queue = new LinkedList<>();
             queue.offer(root);
             while (!queue.isEmpty()){
                 BinaryTree.Node currentNode = queue.poll();
-                counter++;
+                result += currentNode.getValue()+",";
                 if (currentNode.getLeftChild()!=null){
                     queue.offer(currentNode.getLeftChild());
                 }
@@ -26,20 +26,7 @@ public class CountNodeService {
                     queue.offer(currentNode.getRightChild());
                 }
             }
-            return counter;
+            return result;
         }
     }
-
-    //Depth First Search (pre-order with recursion)
-    public int getCountNodeRecImpl (BinaryTree tree) {
-        int result = 1;
-        if (tree.getRoot()==null){
-            return 0;
-        }
-        result += getCountNodeRecImpl(new BinaryTree(tree.getRoot().getLeftChild()));
-        result += getCountNodeRecImpl(new BinaryTree(tree.getRoot().getRightChild()));
-
-        return result;
-    }
-
 }
