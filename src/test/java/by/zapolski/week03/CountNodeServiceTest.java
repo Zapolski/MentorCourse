@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class CountNodeServiceTest extends BaseAbstractTest{
 
-    CountNodeService countNodeService = new CountNodeService();
+    private CountNodeService countNodeService = new CountNodeService();
 
     @Test
     public void get(){

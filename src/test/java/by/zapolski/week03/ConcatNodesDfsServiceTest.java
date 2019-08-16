@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ConcatNodesDfsServiceTest extends BaseAbstractTest{
 
-    ConcatNodesDfsService concatNodesDfsService = new ConcatNodesDfsService();
+    private ConcatNodesDfsService concatNodesDfsService = new ConcatNodesDfsService();
 
     @Test
     public void getConcatNodesStringPreOder() {

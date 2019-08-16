@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class HighBinaryTreeServiceTest extends BaseAbstractTest{
 
-    HighBinaryTreeService highBinaryTreeService = new HighBinaryTreeService();
+    private HighBinaryTreeService highBinaryTreeService = new HighBinaryTreeService();
 
     @Test
     public void heightOfBinaryTreeTest(){
