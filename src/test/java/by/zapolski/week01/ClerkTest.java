@@ -1,3 +1,5 @@
+package by.zapolski.week01;
+
 import by.zapolski.week01.task2.Clerk;
 import by.zapolski.week01.task2.Customer;
 import by.zapolski.week01.task2.NominalBancnoteType;
