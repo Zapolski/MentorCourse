@@ -10,7 +10,6 @@ public abstract class BaseAbstractTest {
 
     @Before
     public void before() {
-        //F,B,A,D,C,E,G,I,H
         binaryTree.insert("F");
         binaryTree.insert("B");
         binaryTree.insert("A");

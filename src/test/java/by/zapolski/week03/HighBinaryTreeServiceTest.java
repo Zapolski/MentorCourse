@@ -5,12 +5,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class HighBinaryTreeServiceTest extends BaseAbstractTest{
+public class HighBinaryTreeServiceTest extends BaseAbstractTest {
 
     private HighBinaryTreeService highBinaryTreeService = new HighBinaryTreeService();
 
     @Test
-    public void heightOfBinaryTreeTest(){
-        assertEquals(4,highBinaryTreeService.heightOfBinaryTree(binaryTree));
+    public void heightOfBinaryTreeTest() {
+        assertEquals(4, highBinaryTreeService.heightOfBinaryTree(binaryTree));
     }
 }

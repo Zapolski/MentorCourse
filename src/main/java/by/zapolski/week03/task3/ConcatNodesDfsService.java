@@ -6,8 +6,7 @@ public class ConcatNodesDfsService {
 
     //Depth First Search (pre-order with recursion)
     public String getConcatNodesStringPreOder(BinaryTree tree) {
-
-        if (tree.getRoot()==null){
+        if (tree.getRoot() == null) {
             return "";
         }
         String result = tree.getRoot().getValue().toString();
@@ -20,7 +19,7 @@ public class ConcatNodesDfsService {
 
     //Depth First Search (in-order with recursion)
     public String getConcatNodesStringInOder(BinaryTree tree) {
-        if (tree.getRoot()==null){
+        if (tree.getRoot() == null) {
             return "";
         }
         String result = getConcatNodesStringInOder(new BinaryTree(tree.getRoot().getLeftChild()));
@@ -31,7 +30,7 @@ public class ConcatNodesDfsService {
 
     //Depth First Search (post-order with recursion)
     public String getConcatNodesStringPostOder(BinaryTree tree) {
-        if (tree.getRoot()==null){
+        if (tree.getRoot() == null) {
             return "";
         }
         String result = getConcatNodesStringPostOder(new BinaryTree(tree.getRoot().getLeftChild()));

@@ -8,25 +8,25 @@ import java.util.Queue;
 public class ConcatNodesBfsService {
 
     // Breadth First Search (approach with loop)
-    public String getConcatNodesString (BinaryTree tree){
+    public String getConcatNodesString(BinaryTree tree) {
         BinaryTree.Node root = tree.getRoot();
-        if (root==null){
+        if (root == null) {
             return "";
-        }else{
-            String result = "";
+        } else {
+            StringBuilder result = new StringBuilder();
             Queue<BinaryTree.Node> queue = new LinkedList<>();
             queue.offer(root);
-            while (!queue.isEmpty()){
+            while (!queue.isEmpty()) {
                 BinaryTree.Node currentNode = queue.poll();
-                result += currentNode.getValue()+",";
-                if (currentNode.getLeftChild()!=null){
+                result.append(currentNode.getValue());
+                if (currentNode.getLeftChild() != null) {
                     queue.offer(currentNode.getLeftChild());
                 }
-                if (currentNode.getRightChild()!=null){
+                if (currentNode.getRightChild() != null) {
                     queue.offer(currentNode.getRightChild());
                 }
             }
-            return result;
+            return result.toString();
         }
     }
 }

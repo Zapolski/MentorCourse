@@ -8,21 +8,21 @@ import java.util.Queue;
 public class CountNodeService {
 
     // Breadth First Search (approach with loop)
-    public int getCountNodeLoopImpl (BinaryTree tree){
+    public int getCountNodeLoopImpl(BinaryTree tree) {
         BinaryTree.Node root = tree.getRoot();
-        if (root==null){
+        if (root == null) {
             return 0;
-        }else{
+        } else {
             int counter = 0;
             Queue<BinaryTree.Node> queue = new LinkedList<>();
             queue.offer(root);
-            while (!queue.isEmpty()){
+            while (!queue.isEmpty()) {
                 BinaryTree.Node currentNode = queue.poll();
                 counter++;
-                if (currentNode.getLeftChild()!=null){
+                if (currentNode.getLeftChild() != null) {
                     queue.offer(currentNode.getLeftChild());
                 }
-                if (currentNode.getRightChild()!=null){
+                if (currentNode.getRightChild() != null) {
                     queue.offer(currentNode.getRightChild());
                 }
             }
@@ -31,15 +31,13 @@ public class CountNodeService {
     }
 
     //Depth First Search (pre-order with recursion)
-    public int getCountNodeRecImpl (BinaryTree tree) {
+    public int getCountNodeRecImpl(BinaryTree tree) {
         int result = 1;
-        if (tree.getRoot()==null){
+        if (tree.getRoot() == null) {
             return 0;
         }
         result += getCountNodeRecImpl(new BinaryTree(tree.getRoot().getLeftChild()));
         result += getCountNodeRecImpl(new BinaryTree(tree.getRoot().getRightChild()));
-
         return result;
     }
-
 }
