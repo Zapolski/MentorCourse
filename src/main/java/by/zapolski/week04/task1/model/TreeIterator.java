@@ -2,7 +2,7 @@ package by.zapolski.week04.task1.model;
 
 import java.util.Iterator;
 
-public class TreeIterator<T extends Comparable> implements Iterator {
+public class TreeIterator<T extends Comparable<T>> implements Iterator {
 
     BinaryTree<T> binaryTree;
     IterationStrategy iterationStrategy;

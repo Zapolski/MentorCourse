@@ -1,21 +1,21 @@
 package by.zapolski.week04.task1.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class BinaryTree<T extends Comparable> {
+public class BinaryTree<T extends Comparable<T>> {
 
     public static class Node<T> {
         private T value;
-        private Node leftChild;
-        private Node rightChild;
+        private Node<T> leftChild;
+        private Node<T> rightChild;
 
-        public Node getLeftChild() {
+        public Node<T> getLeftChild() {
             return leftChild;
         }
 
-        public Node getRightChild() {
+        public Node<T> getRightChild() {
             return rightChild;
         }
 
@@ -34,19 +34,19 @@ public class BinaryTree<T extends Comparable> {
         return root;
     }
 
-    public BinaryTree(Node<T> root) {
-        this.root = root;
-    }
+//    public BinaryTree(Node<T> root) {
+//        this.root = root;
+//    }
 
     public BinaryTree() {
     }
 
     public void insert(T value) {
-        Node node = new Node(value);
+        Node<T> node = new Node<>(value);
         if (root == null) {
             root = node;
         } else {
-            Node current = root;
+            Node<T> current = root;
             while (true) {
                 int cmp = value.compareTo(current.value);
                 if (cmp < 0) {
@@ -71,7 +71,7 @@ public class BinaryTree<T extends Comparable> {
     public List<String> output() {
         if (root != null)
             return output(root);
-        return Arrays.asList("Binary tree doesn't contain elements.");
+        return Collections.singletonList("Binary tree doesn't contain elements.");
     }
 
     private List<String> output(Node<T> element) {
@@ -82,7 +82,7 @@ public class BinaryTree<T extends Comparable> {
         return result;
     }
 
-    private void addChildForPrint(ArrayList<String> result, Node rightChild) {
+    private void addChildForPrint(ArrayList<String> result, Node<T> rightChild) {
         if (rightChild != null) {
             List<String> temp = output(rightChild);
             temp.forEach(i -> result.add("    " + i));

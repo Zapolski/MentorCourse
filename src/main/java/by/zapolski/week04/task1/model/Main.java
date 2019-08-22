@@ -20,7 +20,7 @@ public class Main {
 
         binaryTree.output().forEach(System.out::println);
 
-        Iterator<String> iter = new TreeIterator<>(binaryTree);
+        Iterator<String> iter = new TreeIterator<>(binaryTree,null);
         while(iter.hasNext()){
             System.out.println(iter.next());
         }
