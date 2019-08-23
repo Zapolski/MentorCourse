@@ -1,7 +1,5 @@
 package by.zapolski.week04.task1.model;
 
-import java.util.Iterator;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -20,10 +18,12 @@ public class Main {
 
         binaryTree.output().forEach(System.out::println);
 
-        Iterator<String> iter = new TreeIterator<>(binaryTree,null);
-        while(iter.hasNext()){
-            System.out.println(iter.next());
-        }
+        TreeIterator<String> iter = new TreeIterator<>(binaryTree,BfsIterationStrategy.getInstance());
+        iter.forEachRemaining(System.out::print);
+        System.out.println();
+
+        iter = new TreeIterator<>(binaryTree,DfsPreOrderIterationStrategy.getInstance());
+        iter.forEachRemaining(System.out::print);
     }
 
 }

@@ -34,9 +34,9 @@ public class BinaryTree<T extends Comparable<T>> {
         return root;
     }
 
-//    public BinaryTree(Node<T> root) {
-//        this.root = root;
-//    }
+    public BinaryTree(Node<T> root) {
+        this.root = root;
+    }
 
     public BinaryTree() {
     }

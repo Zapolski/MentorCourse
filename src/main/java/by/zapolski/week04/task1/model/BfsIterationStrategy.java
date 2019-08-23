@@ -1,30 +1,43 @@
 package by.zapolski.week04.task1.model;
 
-public class BfsIterationStrategy implements IterationStrategy{
+import java.util.LinkedList;
+import java.util.Queue;
 
+public class BfsIterationStrategy<T extends Comparable<T>> implements IterationStrategy<T>{
+
+    private static BfsIterationStrategy instance;
+    private Queue<BinaryTree.Node<T>> queue;
+
+    public static <T extends Comparable<T>> BfsIterationStrategy<T> getInstance(){
+        if (instance == null){
+            instance = new BfsIterationStrategy<T>();
+        }
+        return instance;
+    }
+
+    private BfsIterationStrategy(){
+        queue = new LinkedList<>();
+    }
+
+    @Override
+    public void init(BinaryTree.Node<T> node) {
+        queue.offer(node);
+    }
+
+    @Override
+    public T getCurrent() {
+        BinaryTree.Node<T> currentNode = queue.poll();
+        if (currentNode != null){
+            if (currentNode.getLeftChild() != null){
+                queue.offer(currentNode.getLeftChild());
+            }
+            if (currentNode.getRightChild() != null){
+                queue.offer(currentNode.getRightChild());
+            }
+            return currentNode.getValue();
+        } else {
+            return null;
+        }
+    }
 
 }
-
-
-//    // Breadth First Search (approach with loop)
-//    public String getConcatNodesString(BinaryTree tree) {
-//        BinaryTree.Node root = tree.getRoot();
-//        if (root == null) {
-//            return "";
-//        } else {
-//            StringBuilder result = new StringBuilder();
-//            Queue<BinaryTree.Node> queue = new LinkedList<>();
-//            queue.offer(root);
-//            while (!queue.isEmpty()) {
-//                BinaryTree.Node currentNode = queue.poll();
-//                result.append(currentNode.getValue());
-//                if (currentNode.getLeftChild() != null) {
-//                    queue.offer(currentNode.getLeftChild());
-//                }
-//                if (currentNode.getRightChild() != null) {
-//                    queue.offer(currentNode.getRightChild());
-//                }
-//            }
-//            return result.toString();
-//        }
-//    }
