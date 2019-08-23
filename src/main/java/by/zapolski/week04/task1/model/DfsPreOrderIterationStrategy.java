@@ -21,18 +21,18 @@ public class DfsPreOrderIterationStrategy<T extends Comparable<T>> implements It
 
     @Override
     public void init(BinaryTree.Node<T> node) {
-        deque.offer(node);
+        deque.push(node);
     }
 
     @Override
     public T getCurrent() {
         BinaryTree.Node<T> currentNode = deque.poll();
         if (currentNode != null){
-            if (currentNode.getLeftChild() != null){
-                deque.offer(currentNode.getLeftChild());
-            }
             if (currentNode.getRightChild() != null){
-                deque.offer(currentNode.getRightChild());
+                deque.push(currentNode.getRightChild());
+            }
+            if (currentNode.getLeftChild() != null){
+                deque.push(currentNode.getLeftChild());
             }
             return currentNode.getValue();
         } else {
