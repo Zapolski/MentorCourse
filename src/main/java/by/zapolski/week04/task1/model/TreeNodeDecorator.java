@@ -2,6 +2,8 @@ package by.zapolski.week04.task1.model;
 
 import by.zapolski.week04.task1.visitor.Visitor;
 
+import java.util.List;
+
 public class TreeNodeDecorator implements TreeNode {
 
     protected TreeNode treeNode;
@@ -25,7 +27,8 @@ public class TreeNodeDecorator implements TreeNode {
         return treeNode.getValue();
     }
 
-    Object accept(Visitor visitor){
-        return visitor.visitNode(this);
-    };
+    public List<String> accept(Visitor visitor) {
+        return visitor.doSomeThing();
+    }
+
 }

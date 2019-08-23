@@ -32,7 +32,9 @@ public class Main {
         //передаелать, чтобы итераторы возвращадли ноду, а не значение
         iter = new TreeIterator<>(binaryTree,DfsPreOrderIterationStrategy.getInstance());
         while (iter.hasNext()){
-            System.out.println(new StudentsCoursesVisitor().visitNode(iter.next()));
+            //System.out.println(new StudentsCoursesVisitor().visitNode(iter.next()));
+            System.out.println((TreeNodeDecorator)iter.next()).accept(new StudentsCoursesVisitor()));
+
         }
 
     }

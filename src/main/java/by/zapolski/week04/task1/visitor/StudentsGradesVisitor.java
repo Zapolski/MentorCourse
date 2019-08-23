@@ -8,6 +8,11 @@ import java.util.List;
 public class StudentsGradesVisitor implements Visitor<List<String>> {
     @Override
     public List<String> visitNode(TreeNodeDecorator treeNodeDecorator) {
+        return treeNodeDecorator.accept(this);
+    }
+
+    @Override
+    public List<String> doSomeThing() {
         return Collections.singletonList("[Меня поситил StudentsGradesVisitor]");
     }
 }
