@@ -6,15 +6,17 @@ import java.util.List;
 
 public class BinaryTree<T extends Comparable<T>> {
 
-    public static class Node<T> {
+    public static class Node<T> implements TreeNode<T>{
         private T value;
         private Node<T> leftChild;
         private Node<T> rightChild;
 
+        @Override
         public Node<T> getLeftChild() {
             return leftChild;
         }
 
+        @Override
         public Node<T> getRightChild() {
             return rightChild;
         }
@@ -23,6 +25,7 @@ public class BinaryTree<T extends Comparable<T>> {
             this.value = value;
         }
 
+        @Override
         public T getValue() {
             return value;
         }
