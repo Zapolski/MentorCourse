@@ -72,20 +72,18 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     public List<String> output() {
-        if (root != null)
-            return output(root);
-        return Collections.singletonList("Binary tree doesn't contain elements.");
+        return root != null ? output(root) : Collections.singletonList("Binary tree doesn't contain elements.");
     }
 
     private List<String> output(Node<T> element) {
-        ArrayList<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         addChildForPrint(result, element.rightChild);
         result.add(element.value.toString());
         addChildForPrint(result, element.leftChild);
         return result;
     }
 
-    private void addChildForPrint(ArrayList<String> result, Node<T> rightChild) {
+    private void addChildForPrint(List<String> result, Node<T> rightChild) {
         if (rightChild != null) {
             List<String> temp = output(rightChild);
             temp.forEach(i -> result.add("    " + i));

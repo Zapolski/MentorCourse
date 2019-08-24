@@ -1,7 +1,5 @@
 package by.zapolski.week04.task1.model;
 
-import by.zapolski.week04.task1.visitor.StudentsCoursesVisitor;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -30,12 +28,12 @@ public class Main {
 
 
         //передаелать, чтобы итераторы возвращадли ноду, а не значение
-        iter = new TreeIterator<>(binaryTree,DfsPreOrderIterationStrategy.getInstance());
-        while (iter.hasNext()){
-            //System.out.println(new StudentsCoursesVisitor().visitNode(iter.next()));
-            System.out.println((TreeNodeDecorator)iter.next()).accept(new StudentsCoursesVisitor()));
-
-        }
+//        iter = new TreeIterator<>(binaryTree,DfsPreOrderIterationStrategy.getInstance());
+//        while (iter.hasNext()){
+//            //System.out.println(new StudentsCoursesVisitor().visitNode(iter.next()));
+//            System.out.println((TreeNodeDecorator)iter.next()).accept(new StudentsCoursesVisitor()));
+//
+//        }
 
     }
 
