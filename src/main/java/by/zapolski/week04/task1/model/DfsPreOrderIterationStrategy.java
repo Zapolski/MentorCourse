@@ -6,7 +6,7 @@ import java.util.Deque;
 public class DfsPreOrderIterationStrategy<T extends Comparable<T>> implements IterationStrategy<T> {
 
     private static DfsPreOrderIterationStrategy instance;
-    private Deque<BinaryTree.Node<T>> deque;
+    private Deque<TreeNode<T>> deque;
 
     public static <T extends Comparable<T>> DfsPreOrderIterationStrategy<T> getInstance() {
         if (instance == null) {
@@ -20,13 +20,13 @@ public class DfsPreOrderIterationStrategy<T extends Comparable<T>> implements It
     }
 
     @Override
-    public void init(BinaryTree.Node<T> node) {
+    public void init(TreeNode<T> node) {
         deque.push(node);
     }
 
     @Override
-    public BinaryTree.Node<T> getCurrent() {
-        BinaryTree.Node<T> currentNode = deque.poll();
+    public TreeNode<T> getCurrent() {
+        TreeNode<T> currentNode = deque.poll();
         if (currentNode != null){
             if (currentNode.getRightChild() != null){
                 deque.push(currentNode.getRightChild());

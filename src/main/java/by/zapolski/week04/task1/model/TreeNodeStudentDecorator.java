@@ -27,6 +27,16 @@ public class TreeNodeStudentDecorator implements TreeNode<Student> {
         return treeNode.getValue();
     }
 
+    @Override
+    public void setLeftChild(TreeNode<Student> leftChild) {
+        treeNode.setLeftChild(leftChild);
+    }
+
+    @Override
+    public void setRightChild(TreeNode<Student> rightChild) {
+        treeNode.setRightChild(rightChild);
+    }
+
     public List<String> accept(Visitor visitor) {
         return visitor.doSomeThing();
     }

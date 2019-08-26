@@ -19,24 +19,23 @@ public class BinaryTree<T extends Comparable<T>> {
         return root;
     }
 
-    public void insert(T value) {
-        Node<T> node = new Node<>(value);
+    public void insert(TreeNode<T> value) {
         if (root == null) {
-            root = node;
+            root = value;
         } else {
-            Node<T> current = root;
+            TreeNode<T> current = root;
             while (true) {
-                int cmp = value.compareTo(current.getValue());
+                int cmp = value.getValue().compareTo(current.getValue());
                 if (cmp < 0) {
                     if (current.getLeftChild() == null) {
-                        current.getLeftChild() = node;
+                        current.setLeftChild(value);
                         break;
                     } else {
                         current = current.getLeftChild();
                     }
                 } else {
                     if (current.getRightChild() == null) {
-                        current.getLeftChild() = node;
+                        current.setRightChild(value);
                         break;
                     } else {
                         current = current.getRightChild();
@@ -67,26 +66,36 @@ public class BinaryTree<T extends Comparable<T>> {
 
     public static class Node<T> implements TreeNode<T>{
         private T value;
-        private Node<T> leftChild;
-        private Node<T> rightChild;
+        private TreeNode<T> leftChild;
+        private TreeNode<T> rightChild;
 
         public Node(T value) {
             this.value = value;
         }
 
         @Override
-        public Node<T> getLeftChild() {
+        public TreeNode<T> getLeftChild() {
             return leftChild;
         }
 
         @Override
-        public Node<T> getRightChild() {
+        public TreeNode<T> getRightChild() {
             return rightChild;
         }
 
         @Override
         public T getValue() {
             return value;
+        }
+
+        @Override
+        public void setLeftChild(TreeNode<T> leftChild) {
+            this.leftChild = leftChild;
+        }
+
+        @Override
+        public void setRightChild(TreeNode<T> rightChild) {
+            this.rightChild = rightChild;
         }
     }
 }

@@ -3,10 +3,10 @@ package by.zapolski.week04.task1.model;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class TreeIterator<T extends Comparable<T>> implements Iterator<BinaryTree.Node<T>> {
+public class TreeIterator<T extends Comparable<T>> implements Iterator<TreeNode<T>> {
 
     private IterationStrategy<T> iterationStrategy;
-    private BinaryTree.Node<T> currentValue;
+    private TreeNode<T> currentValue;
 
     public TreeIterator(BinaryTree<T> binaryTree, IterationStrategy<T> iterationStrategy) {
         this.iterationStrategy = iterationStrategy;
@@ -16,14 +16,16 @@ public class TreeIterator<T extends Comparable<T>> implements Iterator<BinaryTre
 
     @Override
     public boolean hasNext() {
-        return currentValue != null;
+        return this.currentValue != null;
     }
 
     @Override
-    public BinaryTree.Node<T> next() {
-        if (currentValue==null) {
+    public TreeNode<T> next() {
+        if (this.currentValue==null) {
             throw new NoSuchElementException();
         }
-        return iterationStrategy.getCurrent();
+        TreeNode<T> temp = currentValue;
+        this.currentValue = iterationStrategy.getCurrent();
+        return temp;
     }
 }
