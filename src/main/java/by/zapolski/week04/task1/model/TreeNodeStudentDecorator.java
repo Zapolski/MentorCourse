@@ -4,26 +4,26 @@ import by.zapolski.week04.task1.visitor.Visitor;
 
 import java.util.List;
 
-public class TreeNodeDecorator implements TreeNode {
+public class TreeNodeStudentDecorator implements TreeNode<Student> {
 
-    protected TreeNode treeNode;
+    private TreeNode<Student > treeNode;
 
-    public TreeNodeDecorator(TreeNode treeNode) {
+    public TreeNodeStudentDecorator(TreeNode<Student> treeNode) {
         this.treeNode = treeNode;
     }
 
     @Override
-    public TreeNode getLeftChild() {
+    public TreeNode<Student> getLeftChild() {
         return treeNode.getLeftChild();
     }
 
     @Override
-    public TreeNode getRightChild() {
+    public TreeNode<Student> getRightChild() {
         return treeNode.getRightChild();
     }
 
     @Override
-    public Object getValue() {
+    public Student getValue() {
         return treeNode.getValue();
     }
 

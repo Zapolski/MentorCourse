@@ -1,14 +1,14 @@
 package by.zapolski.week04.task1.visitor;
 
-import by.zapolski.week04.task1.model.TreeNodeDecorator;
+import by.zapolski.week04.task1.model.TreeNodeStudentDecorator;
 
 import java.util.Collections;
 import java.util.List;
 
-public class StudentsGradesVisitor implements Visitor<List<String>> {
-    @Override
-    public List<String> visitNode(TreeNodeDecorator treeNodeDecorator) {
-        return treeNodeDecorator.accept(this);
+public class StudentsGradesVisitor implements Visitor {
+
+    public List<String> report(TreeNodeStudentDecorator treeNodeStudentDecorator) {
+        return treeNodeStudentDecorator.accept(this);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class DfsPreOrderIterationStrategy<T extends Comparable<T>> implements It
     }
 
     @Override
-    public T getCurrent() {
+    public BinaryTree.Node<T> getCurrent() {
         BinaryTree.Node<T> currentNode = deque.poll();
         if (currentNode != null){
             if (currentNode.getRightChild() != null){
@@ -34,22 +34,9 @@ public class DfsPreOrderIterationStrategy<T extends Comparable<T>> implements It
             if (currentNode.getLeftChild() != null){
                 deque.push(currentNode.getLeftChild());
             }
-            return currentNode.getValue();
+            return currentNode;
         } else {
             return null;
         }
     }
 }
-
-//    //Depth First Search (pre-order with recursion)
-//    public String getConcatNodesStringPreOder(BinaryTree tree) {
-//        if (tree.getRoot() == null) {
-//            return "";
-//        }
-//        String result = tree.getRoot().getValue().toString();
-//
-//        result += getConcatNodesStringPreOder(new BinaryTree(tree.getRoot().getLeftChild()));
-//        result += getConcatNodesStringPreOder(new BinaryTree(tree.getRoot().getRightChild()));
-//
-//        return result;
-//    }
