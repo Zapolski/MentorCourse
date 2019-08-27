@@ -8,10 +8,6 @@ public class BinaryTree<T extends Comparable<T>> {
 
     private TreeNode<T> root;
 
-    public BinaryTree(TreeNode<T> root) {
-        this.root = root;
-    }
-
     public BinaryTree() {
     }
 
@@ -19,60 +15,22 @@ public class BinaryTree<T extends Comparable<T>> {
         return root;
     }
 
-//    Node insert(x : Node, z : T):               // x — корень поддерева, z — вставляемый ключ
-//            if x == null
-//            return Node(z)                        // подвесим Node с key = z
-//   else if z < x.key
-//    x.left = insert(x.left, z)
-//   else if z > x.key
-//    x.right = insert(x.right, z)
-//   return x
-
-    public TreeNode<T> add(TreeNode<T> value){
-        return add(this.root,value);
-    }
-
-    private TreeNode<T> add(TreeNode<T> currentRoot, TreeNode<T> value){
-        if (currentRoot == null){
-            currentRoot = value;
-            return currentRoot;
-        }else{
-            if (currentRoot.getValue().compareTo(value.getValue()) < 0) {
-                return add(currentRoot.getLeftChild(),value);
-            }else {
-                return add(currentRoot.getRightChild(),value);
-            }
-        }
-    }
-
-
-
     public void insert(TreeNode<T> value) {
-        if (root == null) {
-            root = value;
-        } else {
-            TreeNode<T> current = root;
-            while (true) {
-                if (value.getValue().compareTo(current.getValue()) < 0) {
-                    if (current.getLeftChild() == null) {
-                        current.setLeftChild(value);
-                        break;
-                    } else {
-                        current = current.getLeftChild();
-                    }
-                } else {
-                    if (current.getRightChild() == null) {
-                        current.setRightChild(value);
-                        break;
-                    } else {
-                        current = current.getRightChild();
-                    }
-                }
-            }
-        }
+        this.root = insert(this.root, value);
     }
 
-
+    private TreeNode<T> insert(TreeNode<T> currentRoot, TreeNode<T> value) {
+        if (currentRoot == null) {
+            return value;
+        } else {
+            if (currentRoot.getValue().compareTo(value.getValue()) > 0) {
+                currentRoot.setLeftChild(insert(currentRoot.getLeftChild(), value));
+            } else {
+                currentRoot.setRightChild(insert(currentRoot.getRightChild(), value));
+            }
+        }
+        return currentRoot;
+    }
 
     public List<String> output() {
         return root != null ? output(root) : Collections.singletonList("Binary tree doesn't contain elements.");
@@ -93,7 +51,7 @@ public class BinaryTree<T extends Comparable<T>> {
         }
     }
 
-    public static class Node<T> implements TreeNode<T>{
+    public static class Node<T> implements TreeNode<T> {
         private T value;
         private TreeNode<T> leftChild;
         private TreeNode<T> rightChild;

@@ -13,27 +13,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        BinaryTree<String> binaryTree = new BinaryTree<>(new BinaryTree.Node<>("F"));
+        BinaryTree<String> binaryTree = new BinaryTree<>();
 
-//        binaryTree.insert(new BinaryTree.Node<>("F"));
-//        binaryTree.insert(new BinaryTree.Node<>("B"));
-//        binaryTree.insert(new BinaryTree.Node<>("A"));
-//        binaryTree.insert(new BinaryTree.Node<>("D"));
-//        binaryTree.insert(new BinaryTree.Node<>("C"));
-//        binaryTree.insert(new BinaryTree.Node<>("E"));
-//        binaryTree.insert(new BinaryTree.Node<>("G"));
-//        binaryTree.insert(new BinaryTree.Node<>("I"));
-//        binaryTree.insert(new BinaryTree.Node<>("H"));
-
-        //binaryTree.add(new BinaryTree.Node<>("F"));
-        binaryTree.add(new BinaryTree.Node<>("B"));
-        binaryTree.add(new BinaryTree.Node<>("A"));
-        binaryTree.add(new BinaryTree.Node<>("D"));
-        binaryTree.add(new BinaryTree.Node<>("C"));
-        binaryTree.add(new BinaryTree.Node<>("E"));
-        binaryTree.add(new BinaryTree.Node<>("G"));
-        binaryTree.add(new BinaryTree.Node<>("I"));
-        binaryTree.add(new BinaryTree.Node<>("H"));
+        binaryTree.insert(new BinaryTree.Node<>("F"));
+        binaryTree.insert(new BinaryTree.Node<>("B"));
+        binaryTree.insert(new BinaryTree.Node<>("A"));
+        binaryTree.insert(new BinaryTree.Node<>("D"));
+        binaryTree.insert(new BinaryTree.Node<>("C"));
+        binaryTree.insert(new BinaryTree.Node<>("E"));
+        binaryTree.insert(new BinaryTree.Node<>("G"));
+        binaryTree.insert(new BinaryTree.Node<>("I"));
+        binaryTree.insert(new BinaryTree.Node<>("H"));
 
         binaryTree.output().forEach(System.out::println);
 
