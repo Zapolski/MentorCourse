@@ -42,9 +42,9 @@ public class Main {
         System.out.println();
 
         BinaryTree<Student> studentTree = new BinaryTree<>();
-        studentTree.insert(new BinaryTree.Node<>(new Student()));
-        studentTree.insert(new BinaryTree.Node<>(new Student()));
-        studentTree.insert(new BinaryTree.Node<>(new Student()));
+        studentTree.insert(new BinaryTree.Node<>(new Student("Alan","math",8)));
+        studentTree.insert(new BinaryTree.Node<>(new Student("Dana","bio",9)));
+        studentTree.insert(new BinaryTree.Node<>(new Student("Jon","med",5)));
 
         TreeIterator<Student> studentTreeIterator = new TreeIterator<>(studentTree, DfsPreOrderIterationStrategy.getInstance());
         while (studentTreeIterator.hasNext()) {

@@ -2,8 +2,6 @@ package by.zapolski.week04.model;
 
 import by.zapolski.week04.task2.Visitor;
 
-import java.util.List;
-
 public class TreeNodeStudentDecorator implements TreeNode<Student> {
 
     private TreeNode<Student > treeNode;
@@ -42,8 +40,8 @@ public class TreeNodeStudentDecorator implements TreeNode<Student> {
         treeNode.setValue(value);
     }
 
-    public List<String> accept(Visitor visitor) {
-        return visitor.doSomeThing();
+    public String accept(Visitor visitor) {
+        return visitor.doSomeThing(this);
     }
 
 }

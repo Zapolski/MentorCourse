@@ -1,7 +1,7 @@
 package by.zapolski.week04.task2;
 
-import java.util.List;
+import by.zapolski.week04.model.TreeNodeStudentDecorator;
 
 public interface Visitor {
-    List<String> doSomeThing();
+    String doSomeThing(TreeNodeStudentDecorator treeNodeStudentDecorator);
 }
