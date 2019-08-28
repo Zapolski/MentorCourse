@@ -23,7 +23,7 @@ public class BinaryTree<T extends Comparable<T>> {
         if (currentRoot == null) {
             return value;
         } else {
-            if (currentRoot.getValue().compareTo(value.getValue()) < 0) {
+            if (value.getValue().compareTo(currentRoot.getValue()) < 0) {
                 currentRoot.setLeftChild(insert(currentRoot.getLeftChild(), value));
             } else {
                 currentRoot.setRightChild(insert(currentRoot.getRightChild(), value));
@@ -38,9 +38,9 @@ public class BinaryTree<T extends Comparable<T>> {
 
     private List<String> output(TreeNode<T> element) {
         List<String> result = new ArrayList<>();
-        addChildForPrint(result, element.getLeftChild());
-        result.add(element.getValue().toString());
         addChildForPrint(result, element.getRightChild());
+        result.add(element.getValue().toString());
+        addChildForPrint(result, element.getLeftChild());
         return result;
     }
 

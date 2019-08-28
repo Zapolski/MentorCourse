@@ -10,7 +10,7 @@ public class Student implements Comparable<Student> {
 
     private final String name;
     private String course;
-    private float avgGrade;
+    private Float avgGrade;
 
     @Override
     public int compareTo(Student o) {

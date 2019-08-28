@@ -6,6 +6,6 @@ public class StudentsGradesVisitor implements Visitor {
 
     @Override
     public String doSomeThing(TreeNodeStudentDecorator treeNodeStudentDecorator) {
-        return "Я "+treeNodeStudentDecorator.getValue()+"[Меня поситил StudentsGradesVisitor]";
+        return treeNodeStudentDecorator.getValue().getAvgGrade().toString();
     }
 }
