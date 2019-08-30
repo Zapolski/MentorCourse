@@ -8,18 +8,18 @@ public class Dump {
 
     private List<Parts> parts;
 
-    public Dump(int initialSize) {
+    public Dump() {
         this.parts = new ArrayList<>();
-        initParts(initialSize);
+        initParts();
     }
 
-    private void initParts(int initialSize) {
-        for (int i = 0; i < initialSize; i++) {
+    private void initParts() {
+        for (int i = 0; i < Constants.INITIAL_DUMP_SIZE; i++) {
             parts.add(Parts.randomPart());
         }
     }
 
-    public synchronized int getSize(){
+    public synchronized int getSize() {
         return parts.size();
     }
 
@@ -32,8 +32,8 @@ public class Dump {
         parts.add(Parts.randomPart());
     }
 
-    public synchronized Parts getAndRemoveRandomPart(){
-        if (!parts.isEmpty()){
+    public synchronized Parts getAndRemoveRandomPart() {
+        if (!parts.isEmpty()) {
             int index = new Random().nextInt(parts.size());
             return parts.remove(index);
         }

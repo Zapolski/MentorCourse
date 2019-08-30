@@ -7,10 +7,12 @@ public class MadProfessor {
 
     private Map<Parts, Integer> stock;
     private int countReadyRobot = 0;
+    private String name;
 
-    public MadProfessor() {
+    public MadProfessor(String name) {
         this.stock = new HashMap<>();
         initStock();
+        this.name = name;
     }
 
     private void initStock() {
@@ -19,7 +21,7 @@ public class MadProfessor {
         }
     }
 
-    private boolean tryMakeRobot() {
+    public boolean tryMakeRobot() {
         long countAvailableTypeParts = stock.entrySet().stream().filter(entry -> entry.getValue() > 0).count();
         if (countAvailableTypeParts == Parts.SIZE) {
             stock.entrySet().forEach(entry -> entry.setValue(entry.getValue() - 1));
@@ -33,22 +35,16 @@ public class MadProfessor {
         stock.put(part,stock.get(part)+1);
     }
 
+    public int getCountReadyRobot() {
+        return countReadyRobot;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     // for debug
     public Map<Parts, Integer> getStock() {
         return stock;
-    }
-
-    public static void main(String[] args) {
-
-        MadProfessor madProfessor = new MadProfessor();
-        System.out.println("Создали профессора: "+madProfessor.getStock());
-
-        for (Parts part : Parts.VALUES) {
-            madProfessor.addParts(part);
-        }
-
-        System.out.println("Напихали профессора: "+madProfessor.getStock());
-        System.out.println("Пробую делать робота: "+madProfessor.tryMakeRobot());
-        System.out.println("После пробы: "+madProfessor.getStock());
     }
 }
