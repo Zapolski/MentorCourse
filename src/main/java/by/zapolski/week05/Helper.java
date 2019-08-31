@@ -25,14 +25,11 @@ public class Helper extends Thread {
     public void run() {
         for (int i = 0; i < Constants.COUNT_NIGHTS; i++) {
 
-            stealFromDump();
-            transferPartsToProfessor();
-            if (madProfessor.tryMakeRobot()){
-                LOGGER.debug("Профессор {} удачно создал робота.", madProfessor.getName());
-            }else{
-                LOGGER.debug("Профессору {} не хватает деталей для создания робота.", madProfessor.getName());
+            synchronized (dump){
+                stealFromDump();
+                transferPartsToProfessor();
             }
-            LOGGER.debug("У профессора {} {} роботов. Склад: {}", madProfessor.getName(),madProfessor.getCountReadyRobot(), madProfessor.getStock());
+            madProfessor.makeRobot();
 
             try {
                 Thread.sleep(Constants.DURATION_NIGHT_MS);
@@ -40,7 +37,6 @@ public class Helper extends Thread {
                 e.printStackTrace();
             }
         }
-
     }
 
     private void stealFromDump() {

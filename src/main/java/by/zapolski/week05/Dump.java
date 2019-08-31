@@ -1,5 +1,8 @@
 package by.zapolski.week05;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,6 +10,7 @@ import java.util.Random;
 public class Dump {
 
     private List<Parts> parts;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Dump.class);
 
     public Dump() {
         this.parts = new ArrayList<>();
@@ -17,22 +21,15 @@ public class Dump {
         for (int i = 0; i < Constants.INITIAL_DUMP_SIZE; i++) {
             parts.add(Parts.randomPart());
         }
+        LOGGER.warn("Начальная свалка: {}, количество элементов: {}", parts, parts.size());
     }
 
-    public synchronized int getSize() {
-        return parts.size();
-    }
-
-    // for debug
-    public synchronized List<Parts> getParts() {
-        return parts;
-    }
-
-    public synchronized void addRandomPart() {
+    public void addRandomPart() {
         parts.add(Parts.randomPart());
+        LOGGER.warn("Я свалка. В меня добавили: {}. Текущее количество элементов: {}", parts.get(parts.size()-1), parts.size());
     }
 
-    public synchronized Parts getAndRemoveRandomPart() {
+    public Parts getAndRemoveRandomPart() {
         if (!parts.isEmpty()) {
             int index = new Random().nextInt(parts.size());
             return parts.remove(index);

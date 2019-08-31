@@ -17,14 +17,17 @@ public class Factory extends Thread {
     @Override
     public void run() {
 
-        LOGGER.warn("Начальная свалка: {}, количество элементов: {}", dump.getParts(), dump.getParts().size());
+
         for (int i = 0; i < Constants.COUNT_NIGHTS; i++) {
             int count = new Random().nextInt(4) + 1;
-            for (int j = 0; j < count; j++) {
-                dump.addRandomPart();
+
+            LOGGER.debug("-----------> Фабрика решила добавить {} элементов.",count);
+            synchronized (dump){
+                for (int j = 0; j < count; j++) {
+                    dump.addRandomPart();
+                }
             }
-            LOGGER.debug("-----------> Фабрика добавляет {} элемент(а). Кол-во эл-ов: {}. Текущая свалка: {}",
-                    count, dump.getParts().size(), dump.getParts());
+
             try {
                 Thread.sleep(Constants.DURATION_NIGHT_MS);
             } catch (InterruptedException e) {
