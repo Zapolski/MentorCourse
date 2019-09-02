@@ -11,15 +11,9 @@ public class Main {
         Helper helper1 = new Helper(dump,madProfessor1);
         Helper helper2 = new Helper(dump,madProfessor2);
 
-        factory.start();
-
-        try {
-            Thread.sleep(30);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         helper1.start();
         helper2.start();
+
+        factory.start();
     }
 }

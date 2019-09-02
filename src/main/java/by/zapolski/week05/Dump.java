@@ -24,16 +24,29 @@ public class Dump {
         LOGGER.warn("Начальная свалка: {}, количество элементов: {}", parts, parts.size());
     }
 
-    public void addRandomPart() {
-        parts.add(Parts.randomPart());
-        LOGGER.warn("Я свалка. В меня добавили: {}. Текущее количество элементов: {}", parts.get(parts.size()-1), parts.size());
+    public synchronized void addRandomParts(int count) {
+        for (int i = 0; i < count; i++) {
+            parts.add(Parts.randomPart());
+            LOGGER.warn("Я свалка. В меня добавили: {}. Текущее количество элементов: {}", parts.get(parts.size()-1), parts.size());
+        }
+        notifyAll();
     }
 
-    public Parts getAndRemoveRandomPart() {
-        if (!parts.isEmpty()) {
-            int index = new Random().nextInt(parts.size());
-            return parts.remove(index);
+    public synchronized List<Parts> getAndRemoveRandomParts(int count) {
+
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        return null;
+
+        List<Parts> result = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            if (!parts.isEmpty()) {
+                int index = new Random().nextInt(parts.size());
+                result.add(parts.remove(index));
+            }
+        }
+        return result;
     }
 }

@@ -18,41 +18,29 @@ public class Helper extends Thread {
     public Helper(Dump dump, MadProfessor madProfessor) {
         this.dump = dump;
         this.madProfessor = madProfessor;
-        setName("Helper_for_"+madProfessor.getName());
+        setName("Helper_for_" + madProfessor.getName());
     }
 
     @Override
     public void run() {
-        for (int i = 0; i < Constants.COUNT_NIGHTS; i++) {
-
-            synchronized (dump){
-                stealFromDump();
-                transferPartsToProfessor();
-            }
+        while (true){
+            stealFromDump();
+            transferPartsToProfessor();
             madProfessor.makeRobot();
-
-            try {
-                Thread.sleep(Constants.DURATION_NIGHT_MS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 
     private void stealFromDump() {
         int count = new Random().nextInt(4) + 1;
         for (int i = 0; i < count; i++) {
-            Parts part = dump.getAndRemoveRandomPart();
-            if (part != null) {
-                pocket.add(part);
-            }
+            pocket = dump.getAndRemoveRandomParts(count);
         }
         LOGGER.debug("{} планировал украсть {} элементов. Украл: {}. Украденное: {}", getName(), count, pocket.size(), pocket);
     }
 
     private void transferPartsToProfessor() {
         //LOGGER.debug("{} отдаю своему профессору {} элементов. Отдаваемое: {}", getName(), pocket.size(), pocket);
-        while (!pocket.isEmpty()){
+        while (!pocket.isEmpty()) {
             madProfessor.addParts(pocket.remove(0));
         }
         //LOGGER.debug("У {} после отдачи: {}.", getName(), pocket);
