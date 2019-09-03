@@ -8,18 +8,8 @@ import java.util.*;
 public class Dump {
 
     private List<Parts> parts;
-    private Map<String,Boolean> visitors;
+    private Map<Long,Boolean> visitors;
     private static final Logger LOGGER = LoggerFactory.getLogger(Dump.class);
-
-    public boolean isDay() {
-        return isDay;
-    }
-
-    public void setDay(boolean day) {
-        isDay = day;
-    }
-
-    private boolean isDay = true;
 
     public Dump() {
         this.parts = new ArrayList<>();
@@ -36,9 +26,11 @@ public class Dump {
 
     public synchronized void addRandomParts(int count) {
 
+        if (visitors.get(Thread.currentThread().getId()) == null){
+           visitors.put(Thread.currentThread().getId(),true) ;
+        }
 
-
-        while (isDay){
+        while (visitors.get(Thread.currentThread().getId())){
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -50,11 +42,17 @@ public class Dump {
             parts.add(Parts.randomPart());
             LOGGER.debug("Я свалка. В меня добавили: {}. Текущее количество элементов: {}", parts.get(parts.size()-1), parts.size());
         }
+
+        visitors.put(Thread.currentThread().getId(),true);
     }
 
     public synchronized List<Parts> getAndRemoveRandomParts(int count) {
 
-        while (isDay){
+        if (visitors.get(Thread.currentThread().getId()) == null){
+            visitors.put(Thread.currentThread().getId(),true);
+        }
+
+        while (visitors.get(Thread.currentThread().getId())){
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -69,11 +67,15 @@ public class Dump {
                 result.add(parts.remove(index));
             }
         }
+        visitors.put(Thread.currentThread().getId(),true);
+
         return result;
     }
 
     public synchronized void startNight() {
-        isDay = false;
+        for (Map.Entry<Long,Boolean> entry : visitors.entrySet()){
+            entry.setValue(false);
+        }
         notifyAll();
     }
 }
