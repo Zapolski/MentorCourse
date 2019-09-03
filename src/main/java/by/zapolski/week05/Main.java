@@ -3,6 +3,8 @@ package by.zapolski.week05;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static by.zapolski.week05.UtilsAndConstants.*;
+
 public class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
@@ -19,16 +21,13 @@ public class Main {
         helper1.start();
         helper2.start();
         factory.start();
+        mySleep(500);
 
-        for (int i = 0; i < Constants.COUNT_NIGHTS; i++) {
+        for (int i = 0; i < COUNT_NIGHTS; i++) {
             LOGGER.warn("--------------> Наступила ночь! <-------------------");
-            dump.startNight();
-            try {
-                Thread.sleep(Constants.DURATION_NIGHT_MS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
+            dump.openAccess();
+            mySleep(DURATION_NIGHT_MS);
         }
+
     }
 }

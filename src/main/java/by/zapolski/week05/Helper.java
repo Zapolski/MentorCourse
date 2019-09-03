@@ -23,7 +23,7 @@ public class Helper extends Thread {
 
     @Override
     public void run() {
-        while (true){
+        while (true) {
             stealFromDump();
             transferPartsToProfessor();
             madProfessor.makeRobot();
@@ -32,18 +32,16 @@ public class Helper extends Thread {
 
     private void stealFromDump() {
         int count = new Random().nextInt(4) + 1;
-        for (int i = 0; i < count; i++) {
-            pocket = dump.getAndRemoveRandomParts(count);
-        }
+        pocket = dump.getAndRemoveRandomParts(count);
         LOGGER.debug("{} планировал украсть {} элементов. Украл: {}. Украденное: {}", getName(), count, pocket.size(), pocket);
     }
 
     private void transferPartsToProfessor() {
-        //LOGGER.debug("{} отдаю своему профессору {} элементов. Отдаваемое: {}", getName(), pocket.size(), pocket);
+        LOGGER.debug("{} отдаю своему профессору {} элементов. Отдаваемое: {}", getName(), pocket.size(), pocket);
         while (!pocket.isEmpty()) {
             madProfessor.addParts(pocket.remove(0));
         }
-        //LOGGER.debug("У {} после отдачи: {}.", getName(), pocket);
+        LOGGER.debug("У {} после отдачи: {}.", getName(), pocket);
     }
 
 

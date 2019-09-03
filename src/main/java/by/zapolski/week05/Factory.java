@@ -16,16 +16,9 @@ public class Factory extends Thread {
 
     @Override
     public void run() {
-        while (true){
+        while (true) {
             int count = new Random().nextInt(4) + 1;
             dump.addRandomParts(count);
-            LOGGER.debug("Фабрика решила добавить {} элементов.", count);
-            try {
-                Thread.sleep(Constants.DURATION_NIGHT_MS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
         }
     }
 }
