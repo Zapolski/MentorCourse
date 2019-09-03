@@ -16,24 +16,16 @@ public class Factory extends Thread {
 
     @Override
     public void run() {
-
-        for (int i = 0; i < Constants.COUNT_NIGHTS; i++) {
-
-
-                int count = new Random().nextInt(4) + 1;
-                LOGGER.debug("-----------> Фабрика решила добавить {} элементов.", count);
-                dump.addRandomParts(count);
-
-                try {
-                    Thread.sleep(Constants.DURATION_NIGHT_MS);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-
-
+        while (true){
+            int count = new Random().nextInt(4) + 1;
+            dump.addRandomParts(count);
+            LOGGER.debug("Фабрика решила добавить {} элементов.", count);
+            try {
+                Thread.sleep(Constants.DURATION_NIGHT_MS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
         }
     }
-
 }

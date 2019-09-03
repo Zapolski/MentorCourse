@@ -3,17 +3,27 @@ package by.zapolski.week05;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Dump {
 
     private List<Parts> parts;
+    private Map<String,Boolean> visitors;
     private static final Logger LOGGER = LoggerFactory.getLogger(Dump.class);
+
+    public boolean isDay() {
+        return isDay;
+    }
+
+    public void setDay(boolean day) {
+        isDay = day;
+    }
+
+    private boolean isDay = true;
 
     public Dump() {
         this.parts = new ArrayList<>();
+        this.visitors = new HashMap<>();
         initParts();
     }
 
@@ -25,19 +35,31 @@ public class Dump {
     }
 
     public synchronized void addRandomParts(int count) {
+
+
+
+        while (isDay){
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         for (int i = 0; i < count; i++) {
             parts.add(Parts.randomPart());
-            LOGGER.warn("Я свалка. В меня добавили: {}. Текущее количество элементов: {}", parts.get(parts.size()-1), parts.size());
+            LOGGER.debug("Я свалка. В меня добавили: {}. Текущее количество элементов: {}", parts.get(parts.size()-1), parts.size());
         }
-        notifyAll();
     }
 
     public synchronized List<Parts> getAndRemoveRandomParts(int count) {
 
-        try {
-            wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while (isDay){
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         List<Parts> result = new ArrayList<>();
@@ -48,5 +70,10 @@ public class Dump {
             }
         }
         return result;
+    }
+
+    public synchronized void startNight() {
+        isDay = false;
+        notifyAll();
     }
 }
