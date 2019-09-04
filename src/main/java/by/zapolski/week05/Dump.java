@@ -10,10 +10,12 @@ public class Dump {
     private List<Parts> parts;
     private Map<Long, Boolean> visitors;
     private static final Logger LOGGER = LoggerFactory.getLogger(Dump.class);
+    private boolean available;
 
     public Dump() {
         this.parts = new ArrayList<>();
         this.visitors = new HashMap<>();
+        this.available = true;
         initParts();
     }
 
@@ -74,5 +76,13 @@ public class Dump {
                 e.printStackTrace();
             }
         }
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

@@ -16,7 +16,7 @@ public class Factory extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while (dump.isAvailable()) {
             int count = new Random().nextInt(4) + 1;
             dump.addRandomParts(count);
         }

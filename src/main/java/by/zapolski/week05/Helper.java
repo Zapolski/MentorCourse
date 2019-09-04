@@ -23,7 +23,7 @@ public class Helper extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while (dump.isAvailable()) {
             stealFromDump();
             transferPartsToProfessor();
             madProfessor.makeRobot();

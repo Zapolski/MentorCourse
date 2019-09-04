@@ -24,10 +24,10 @@ public class Main {
         mySleep(500);
 
         for (int i = 0; i < COUNT_NIGHTS; i++) {
-            LOGGER.warn("--------------> Наступила ночь! <-------------------");
+            LOGGER.warn("--------------> Наступила ночь! {} <-------------------",i+1);
             dump.openAccess();
             mySleep(DURATION_NIGHT_MS);
         }
-
+        dump.setAvailable(false);
     }
 }
