@@ -9,6 +9,7 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @ToString(callSuper=true, includeFieldNames=true)
-public class Transport extends AbstractNotBattleShip{
-    private Integer carryingCapacity;
+public class Cruiser extends AbstractBattleShip{
+    private Integer numberGuns;
+
 }
