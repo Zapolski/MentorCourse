@@ -11,5 +11,4 @@ import lombok.ToString;
 @ToString(callSuper=true, includeFieldNames=true)
 public class Cruiser extends AbstractBattleShip{
     private Integer numberGuns;
-
 }
